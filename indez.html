@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerario - Juego de la Oca</title>
+  <style>
+    :root {
+      --bg-color: #f7f9f7;
+      --node-blue: #1c5286;
+      --node-teal: #219192;
+      --node-green: #3ea06b;
+      --line-color: #2b7a78;
+      --text-dark: #1e293b;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: var(--node-blue);
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    p.subtitle {
+      color: #64748b;
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .board-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .casilla-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-left: 8px solid var(--node-teal);
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .casilla-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .casilla-card:nth-child(even) {
+      border-left-color: var(--node-green);
+    }
+
+    .casilla-card:first-child {
+      border-left-color: var(--node-blue);
+    }
+
+    .header-casilla {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .numero-paso {
+      background: var(--node-blue);
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .hora {
+      font-weight: 700;
+      color: var(--node-blue);
+      font-size: 1.1rem;
+    }
+
+    .lugar-badge {
+      background: #e2e8f0;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .actividad {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .participantes {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .bifurcacion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .sub-casilla {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 12px;
+      border-top: 3px solid var(--node-teal);
+    }
+
+    .sub-casilla:nth-child(2) {
+      border-top-color: var(--node-green);
+    }
+
+    @media (max-width: 600px) {
+      .bifurcacion {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Itinerario de Trabajo</h1>
+  <p class="subtitle">Recorrido por estaciones y nodos de exploración</p>
+
+  <div class="board-container">
+
+    <!-- Casilla 1 -->
+    <div class="casilla-card">
+      <div class="header-casilla">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="numero-paso">1</span>
+          <span class="hora">17:00 a 17:45 hs <small>(45 min)</small></span>
+        </div>
+        <span class="lugar-badge">EP</span>
+      </div>
+      <div class="actividad">Mesa de especialistas</div>
+      <div class="participantes"><strong>Participan:</strong> Susan De Angelis y Alejandra Batista | <strong>Público:</strong> Grupo total</div>
+    </div>
+
+    <!-- Casilla 2: Bifurcación -->
+    <div class="casilla-card">
+      <div class="header-casilla">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="numero-paso">2</span>
+          <span class="hora">17:50 a 18:40 hs <small>(50 min)</small></span>
+        </div>
+        <span class="lugar-badge">Salas Simultáneas</span>
+      </div>
+      <div class="actividad">Exposiciones RELÁMPAGO</div>
+      <div class="bifurcacion">
+        <div class="sub-casilla">
+          <strong>Aula 3</strong>
+          <p style="margin: 5px 0 0 0; font-size: 0.9rem;">Exponen 6 grupos RELÁMPAGOS</p>
+          <small>Participantes generales se reparten</small>
+        </div>
+        <div class="sub-casilla">
+          <strong>Aula 4</strong>
+          <p style="margin: 5px 0 0 0; font-size: 0.9rem;">Exponen 7 grupos RELÁMPAGOS</p>
+          <small>Participantes generales se reparten</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Casilla 3 -->
+    <div class="casilla-card">
+      <div class="header-casilla">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="numero-paso">3</span>
+          <span class="hora">18:40 a 19:20 hs <small>(40 min)</small></span>
+        </div>
+        <span class="lugar-badge">Aula 1</span>
+      </div>
+      <div class="actividad">Exploraciones</div>
+      <div class="participantes"><strong>Participa:</strong> Grupo total</div>
+    </div>
+
+    <!-- Casilla 4: Bifurcación -->
+    <div class="casilla-card">
+      <div class="header-casilla">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="numero-paso">4</span>
+          <span class="hora">19:20 a 19:40 hs <small>(20 min)</small></span>
+        </div>
+        <span class="lugar-badge">Dinámicas Simultáneas</span>
+      </div>
+      <div class="bifurcacion">
+        <div class="sub-casilla">
+          <strong>Aula 3: BARÓMETRO</strong>
+          <p style="margin: 5px 0 0 0; font-size: 0.85rem;">Participantes generales</p>
+        </div>
+        <div class="sub-casilla">
+          <strong>Aula 4: MAPEO</strong>
+          <p style="margin: 5px 0 0 0; font-size: 0.85rem;">Grupos exposición</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Casilla 5 -->
+    <div class="casilla-card">
+      <div class="header-casilla">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="numero-paso">5</span>
+          <span class="hora">19:40 a 20:00 hs <small>(20 min)</small></span>
+        </div>
+        <span class="lugar-badge">Aula 2</span>
+      </div>
+      <div class="actividad">CIERRE</div>
+      <div class="participantes"><strong>Participa:</strong> Grupo total</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
